@@ -1,0 +1,578 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+	<changeSet author="DINHCUONG" id="1693470352643-1">
+		<createTable tableName="category">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="description" type="VARCHAR(255)" />
+			<column name="slug" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="title" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-2">
+		<createTable tableName="email">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="email" type="VARCHAR(255)" />
+			<column name="created_by_id" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-3">
+		<createTable tableName="operator">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="image" type="VARCHAR(255)" />
+			<column name="title" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-4">
+		<createTable tableName="order_sim">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="commission" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="interest_profit" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="note" type="VARCHAR(255)" />
+			<column name="phone" type="VARCHAR(255)" />
+			<column name="status_order" type="INT" />
+			<column name="unit_price" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_by_id" type="INT" />
+			<column name="sim_id" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-5">
+		<createTable tableName="post">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="description" type="TEXT" />
+			<column name="feature_image" type="VARCHAR(255)" />
+			<column name="meta_description" type="VARCHAR(255)" />
+			<column name="meta_title" type="VARCHAR(255)" />
+			<column name="slug" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="title" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="created_by_id" type="INT" />
+			<column name="post_category_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-6">
+		<createTable tableName="post_category">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="description" type="TEXT" />
+			<column name="meta_description" type="VARCHAR(255)" />
+			<column name="meta_title" type="VARCHAR(255)" />
+			<column name="order_no" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="slug" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="title" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="created_by_id" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-7">
+		<createTable tableName="post_tag">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="description" type="TEXT" />
+			<column name="meta_description" type="VARCHAR(255)" />
+			<column name="meta_title" type="VARCHAR(255)" />
+			<column name="slug" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="title" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="created_by_id" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-8">
+		<createTable tableName="post_tags">
+			<column name="post_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="post_tag_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-9">
+		<createTable tableName="price_config">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="from_price" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="profit_percent" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="to_price" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_by_id" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-10">
+		<createTable tableName="privilege">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="api" type="VARCHAR(255)" />
+			<column name="authenticated" type="BIT(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="authority" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="method" type="VARCHAR(255)" />
+			<column name="secured" type="BIT(1)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-11">
+		<createTable tableName="profit_config">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="from_percent" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="profit_percent" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="to_percent" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="created_by_id" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-12">
+		<createTable tableName="refreshtoken">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="expiry_date" type="datetime">
+				<constraints nullable="false" />
+			</column>
+			<column name="token" type="VARCHAR(255)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="user_id" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-13">
+		<createTable tableName="role">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="name" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-14">
+		<createTable tableName="role_privilege">
+			<column name="role_id" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="privilege_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-15">
+		<createTable tableName="sim">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="phone_no" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="price" type="BIGINT" />
+			<column name="quick_sale" type="BIT(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="status" type="VARCHAR(255)" />
+			<column name="created_by_id" type="INT" />
+			<column name="updated_by" type="INT" />
+			<column name="operator_id" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-16">
+		<createTable tableName="sim_categories">
+			<column name="sim_id" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="category_id" type="INT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-17">
+		<createTable tableName="user">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="address" type="VARCHAR(255)" />
+			<column name="birthdate" type="datetime" />
+			<column name="email" type="VARCHAR(255)" />
+			<column name="enabled" type="BIT(1)" />
+			<column name="gender" type="VARCHAR(255)" />
+			<column name="name" type="VARCHAR(255)" />
+			<column name="note" type="VARCHAR(255)" />
+			<column name="password" type="VARCHAR(255)" />
+			<column name="phone" type="VARCHAR(255)" />
+			<column name="photourl" type="VARCHAR(255)" />
+			<column name="username" type="VARCHAR(255)">
+				<constraints unique="true" />
+			</column>
+			<column name="website" type="VARCHAR(255)" />
+			<column name="created_by_id" type="INT" />
+			<column name="role_id" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-18">
+		<createTable tableName="user_order">
+			<column autoIncrement="true" name="id" type="INT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="created_at" type="datetime" />
+			<column name="updated_at" type="datetime" />
+			<column name="address" type="VARCHAR(255)" />
+			<column name="name" type="VARCHAR(255)" />
+			<column name="note" type="VARCHAR(255)" />
+			<column name="phone" type="VARCHAR(255)" />
+			<column name="status" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-19">
+		<createIndex indexName="FK1b913nefge76htl60fbb24des"
+			tableName="sim">
+			<column name="updated_by" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-20">
+		<createIndex indexName="FK4il83exb2ji6brjwli4kroos3"
+			tableName="sim">
+			<column name="operator_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-21">
+		<createIndex indexName="FK579l3cu9thlt9m3co9595xr5v"
+			tableName="post">
+			<column name="created_by_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-22">
+		<createIndex indexName="FK59u555l1rdj2adjmxswcsni84"
+			tableName="post">
+			<column name="post_category_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-23">
+		<createIndex indexName="FK9o7r2qptrh93devpob11veidj"
+			tableName="user">
+			<column name="created_by_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-24">
+		<createIndex indexName="FKblwvp7q1d64s4vcu2wg559j3o"
+			tableName="price_config">
+			<column name="created_by_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-25">
+		<createIndex indexName="FKc72a3wstnjfyqvgf7ma1e4ucw"
+			tableName="post_category">
+			<column name="created_by_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-26">
+		<createIndex indexName="FKdkwbrwb5r8h74m1v7dqmhp99c"
+			tableName="role_privilege">
+			<column name="privilege_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-27">
+		<createIndex indexName="FKfr75ge3iecdx26qe8afh1srf6"
+			tableName="refreshtoken">
+			<column name="user_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-28">
+		<createIndex indexName="FKfvgk7dhmtx7mb3119i1m6h5mf"
+			tableName="post_tag">
+			<column name="created_by_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-29">
+		<createIndex indexName="FKgvo506rk6xc0tvv4tbls0xpuj"
+			tableName="sim">
+			<column name="created_by_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-30">
+		<createIndex indexName="FKh1ftwwiqmmxlqafjjbfqawnws"
+			tableName="profit_config">
+			<column name="created_by_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-31">
+		<createIndex indexName="FKhk69ea64lr8ovrbqwnkxcvmju"
+			tableName="sim_categories">
+			<column name="sim_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-32">
+		<createIndex indexName="FKhpkqle03cw7w0s9doslromxin"
+			tableName="post_tags">
+			<column name="post_tag_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-33">
+		<createIndex indexName="FKj6jkarxoxib5rixh8b4lgig9n"
+			tableName="email">
+			<column name="created_by_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-34">
+		<createIndex indexName="FKk8jkyfp4v5ar7g7nlh8pkqemo"
+			tableName="order_sim">
+			<column name="sim_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-35">
+		<createIndex indexName="FKl4sxe5xmm716ov3xgseyks95y"
+			tableName="order_sim">
+			<column name="created_by_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-36">
+		<createIndex indexName="FKmmtgl185ka210lj8kenewllt1"
+			tableName="post_tags">
+			<column name="post_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-37">
+		<createIndex indexName="FKn82ha3ccdebhokx3a8fgdqeyy"
+			tableName="user">
+			<column name="role_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-38">
+		<createIndex indexName="FKrxdilwoey37ktgc4m8v873sot"
+			tableName="sim_categories">
+			<column name="category_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-39">
+		<createIndex indexName="FKsykrtrdngu5iexmbti7lu9xa"
+			tableName="role_privilege">
+			<column name="role_id" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-40">
+		<addForeignKeyConstraint
+			baseColumnNames="updated_by" baseTableName="sim"
+			constraintName="FK1b913nefge76htl60fbb24des" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-41">
+		<addForeignKeyConstraint
+			baseColumnNames="operator_id" baseTableName="sim"
+			constraintName="FK4il83exb2ji6brjwli4kroos3" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="operator"
+			validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-42">
+		<addForeignKeyConstraint
+			baseColumnNames="created_by_id" baseTableName="post"
+			constraintName="FK579l3cu9thlt9m3co9595xr5v" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-43">
+		<addForeignKeyConstraint
+			baseColumnNames="post_category_id" baseTableName="post"
+			constraintName="FK59u555l1rdj2adjmxswcsni84" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="post_category"
+			validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-44">
+		<addForeignKeyConstraint
+			baseColumnNames="created_by_id" baseTableName="user"
+			constraintName="FK9o7r2qptrh93devpob11veidj" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-45">
+		<addForeignKeyConstraint
+			baseColumnNames="created_by_id" baseTableName="price_config"
+			constraintName="FKblwvp7q1d64s4vcu2wg559j3o" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-46">
+		<addForeignKeyConstraint
+			baseColumnNames="created_by_id" baseTableName="post_category"
+			constraintName="FKc72a3wstnjfyqvgf7ma1e4ucw" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-47">
+		<addForeignKeyConstraint
+			baseColumnNames="privilege_id" baseTableName="role_privilege"
+			constraintName="FKdkwbrwb5r8h74m1v7dqmhp99c" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="privilege"
+			validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-48">
+		<addForeignKeyConstraint
+			baseColumnNames="user_id" baseTableName="refreshtoken"
+			constraintName="FKfr75ge3iecdx26qe8afh1srf6" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-49">
+		<addForeignKeyConstraint
+			baseColumnNames="created_by_id" baseTableName="post_tag"
+			constraintName="FKfvgk7dhmtx7mb3119i1m6h5mf" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-50">
+		<addForeignKeyConstraint
+			baseColumnNames="created_by_id" baseTableName="sim"
+			constraintName="FKgvo506rk6xc0tvv4tbls0xpuj" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-51">
+		<addForeignKeyConstraint
+			baseColumnNames="created_by_id" baseTableName="profit_config"
+			constraintName="FKh1ftwwiqmmxlqafjjbfqawnws" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-52">
+		<addForeignKeyConstraint
+			baseColumnNames="sim_id" baseTableName="sim_categories"
+			constraintName="FKhk69ea64lr8ovrbqwnkxcvmju" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="sim" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-53">
+		<addForeignKeyConstraint
+			baseColumnNames="post_tag_id" baseTableName="post_tags"
+			constraintName="FKhpkqle03cw7w0s9doslromxin" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="post_tag"
+			validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-54">
+		<addForeignKeyConstraint
+			baseColumnNames="created_by_id" baseTableName="email"
+			constraintName="FKj6jkarxoxib5rixh8b4lgig9n" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-55">
+		<addForeignKeyConstraint
+			baseColumnNames="sim_id" baseTableName="order_sim"
+			constraintName="FKk8jkyfp4v5ar7g7nlh8pkqemo" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="sim" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-56">
+		<addForeignKeyConstraint
+			baseColumnNames="created_by_id" baseTableName="order_sim"
+			constraintName="FKl4sxe5xmm716ov3xgseyks95y" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="user" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-57">
+		<addForeignKeyConstraint
+			baseColumnNames="post_id" baseTableName="post_tags"
+			constraintName="FKmmtgl185ka210lj8kenewllt1" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="post" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-58">
+		<addForeignKeyConstraint
+			baseColumnNames="role_id" baseTableName="user"
+			constraintName="FKn82ha3ccdebhokx3a8fgdqeyy" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="role" validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-59">
+		<addForeignKeyConstraint
+			baseColumnNames="category_id" baseTableName="sim_categories"
+			constraintName="FKrxdilwoey37ktgc4m8v873sot" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="category"
+			validate="true" />
+	</changeSet>
+	<changeSet author="DINHCUONG" id="1693470352643-60">
+		<addForeignKeyConstraint
+			baseColumnNames="role_id" baseTableName="role_privilege"
+			constraintName="FKsykrtrdngu5iexmbti7lu9xa" deferrable="false"
+			initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+			referencedColumnNames="id" referencedTableName="role" validate="true" />
+	</changeSet>
+</databaseChangeLog>
